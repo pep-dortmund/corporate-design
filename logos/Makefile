@@ -1,4 +1,7 @@
-all: build/schwingung_negativ.pdf build/schwingung_positiv.pdf
+all: build/schwingung_negativ.pdf \
+	build/schwingung_positiv.pdf \
+	build/logo_negativ.pdf \
+	build/logo_positiv.pdf \
 
 texoptions = \
 	     --lualatex \
@@ -12,6 +15,12 @@ build/schwingung_positiv.pdf: FORCE | build
 
 build/schwingung_negativ.pdf: FORCE | build
 	latexmk $(texoptions) schwingung_negativ.tex
+
+build/logo_negativ.pdf: FORCE | build
+	latexmk $(texoptions) logo_negativ.tex
+
+build/logo_positiv.pdf: FORCE | build
+	latexmk $(texoptions) logo_positiv.tex
 
 FORCE:
 

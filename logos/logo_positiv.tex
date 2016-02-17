@@ -1,0 +1,28 @@
+\documentclass{standalone}
+
+\usepackage{fontspec}
+\setromanfont[
+  ItalicFont=Merriweather Italic,
+]{Merriweather Regular}
+\setsansfont[
+  ItalicFont=MerriweatherSans Italic,
+  BoldFont=MerriweatherSans Bold,
+]{MerriweatherSans Regular}
+\let\familydefault\sfdefault
+
+\usepackage{xcolor}
+\definecolor{pepgray}{HTML}{565656}
+\usepackage{tikz}
+
+\begin{document}
+  \raggedright
+\begin{tikzpicture}
+  \input{schwingung_positiv_code.tex}
+  \node[anchor=west, text width=5cm] at (1, 0) {%
+    {\huge\bfseries PeP et al.~e.\,V.}\\
+    \textit{Physikstudierende und\\
+    ehemalige Physikstudierende\\
+    der TU Dortmund}
+  };
+\end{tikzpicture}  
+\end{document}
