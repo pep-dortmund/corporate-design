@@ -1,0 +1,14 @@
+\begin{scope}
+  \clip (0, 0) circle[radius=1cm];
+  \draw[color=black, line width=1pt] (0, 0) circle[radius=1cm - 0.5pt];
+  \draw[
+    color=black,
+    line width=1pt,
+    smooth,
+    yscale=0.9,
+    xscale=0.57,
+    xshift=-0.5cm,
+    domain=-1.5:3,
+    samples=200,
+  ] plot (\x, {exp(-\x * \x) * cos(10 * deg(\x))}); 
+\end{scope}
