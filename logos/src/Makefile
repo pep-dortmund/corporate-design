@@ -1,7 +1,9 @@
 all: build/schwingung_negativ.pdf \
 	build/schwingung_positiv.pdf \
-	build/logo_negativ.pdf \
-	build/logo_positiv.pdf \
+	build/logo_negativ.png \
+	build/logo_positiv.png \
+	build/logo_negativ.svg \
+	build/logo_positiv.svg \
 
 texoptions = \
 	     --lualatex \
@@ -22,11 +24,19 @@ build/logo_negativ.pdf: FORCE | build
 build/logo_positiv.pdf: FORCE | build
 	latexmk $(texoptions) logo_positiv.tex
 
+
+%.png: %.pdf | build
+	pdftoppm -png -r 600 $^ > $@
+
+%.svg: %.pdf | build
+	  pdf2svg $^ $@
+
+
 FORCE:
 
 build:
 	mkdir -p build
 
 clean:
-	rm -rf clean
+	rm -rf build
 
