@@ -1,0 +1,98 @@
+\documentclass{article}
+
+\usepackage[quiet]{fontspec}
+\usepackage[math-style=TeX,vargreek-shape=unicode]{unicode-math}
+
+\newfontfamily\bodyfont[]{Merriweather-Regular.ttf}
+\newfontfamily\thinfont[]{MerriweatherSans-Light.otf}
+\newfontfamily\headingfont[]{MerriweatherSans-Bold.otf}
+\newfontfamily\emphfont[]{Merriweather-Italic.ttf}
+\renewcommand{\em}{\emphfont\color{textcolor}}
+
+\defaultfontfeatures{Mapping=tex-text}
+\setmainfont[Mapping=tex-text, Color=textcolor]{Merriweather-Regular.ttf}
+
+\usepackage{parskip}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage[a4paper, top=4cm, right=1.5in, left=1.5in, nohead, nofoot,showframe]{geometry}
+
+\newcommand{\headerbg}[2]{\definecolor{headerbg}{#1}{#2}}
+\definecolor{headerwhite}{HTML}{FAFAFA}
+\definecolor{black}{HTML}{181818}
+\definecolor{pepgray}{HTML}{565656}
+
+\newcommand{\banner}[2]{
+	\begin{tikzpicture}[remember picture,overlay]%
+		\node [fill=headerbg, rectangle, anchor=north, minimum width=\paperwidth, minimum height=4cm] (box) at (current page.north){};%
+		\node [anchor=center] (name) at (box) {\color{headerwhite}\headingfont\Huge #1};%
+		\node [anchor=north] at (name.south) {\color{headerwhite}\thinfont\large #2};%
+	\end{tikzpicture}
+}
+%	\begin{tikzpicture}[remember picture,overlay]
+%		\node[](tl) at (current page.north west){};
+%		\node[shift={(0 cm,-4cm)}](tr4) at (current page.north east){};
+%		\draw[red, fill=green] (tl) rectangle (tr4);
+%	\end{tikzpicture}	
+%	\vspace{-2\parskip}
+
+\newcommand{\colorfield}[2]{
+	\definecolor{circlebg}{#1}{#2}
+	\begin{tikzpicture}
+		\node[anchor=south] (field) at (0, -1.2) {};%
+		\draw[white, fill=circlebg, anchor=south] (0, 0) circle[radius=1cm];%
+		\node[anchor=north, text depth=1ex] at (field.south){\##2};%
+	\end{tikzpicture}
+}
+
+\renewcommand{\section}[1]{
+  \par\vspace{\parskip}
+  {\Large\headingfont\color{black} #1}
+  \par\vspace{\parskip}
+}
+
+\newcommand{\textpreview}[3]{
+		\begin{raggedright}
+		{\setmainfont[#1]{#2}#3
+			\hspace{1cm}abcdefghijklmnopqrstuvwxyz\\%
+			\hspace{1cm}ABCDEFGHIJKLMNOPQRSTUVWXYZ\\%
+			\hspace{1cm}{2pt}0123456789(!\@\#\$\%\&.,?:;)
+			}
+		\end{raggedright}
+}
+
+\begin{document}
+	\headerbg{HTML}{565656}
+	\banner{PeP et. al e.V.}{Physikstudierende und ehemalige Physikstudierende der TU Dortmund}
+	
+	\section{Logos}
+	Hier werden das Hauptlogo und Variationen gezeigt.
+	
+	\begin{raggedright}
+		\begin{tikzpicture}
+			\input{../logos/src/schwingung_negativ_code.tex}
+		\end{tikzpicture}  
+	\end{raggedright}
+	
+	\section{Farben}
+	In diesem Abschnitt wird die Farbpalette beschrieben.
+	
+	\begin{raggedright}
+	\hspace{0.25em}
+		\colorfield{HTML}{565656}\hfill
+		\colorfield{HTML}{397CCC}\hfill
+		\colorfield{HTML}{2CCCA0}\hfill
+		\colorfield{HTML}{FFB137}\hfill
+		\colorfield{HTML}{FFB137}
+		
+	\vspace{\parskip}
+	\end{raggedright}
+
+	\section{Typographie}
+	Hier wird die verwendete Schrift beschrieben und Beispiele präsentiert.
+	
+	\textpreview{Mapping=tex-text, Color=textcolor}{Merriweather-Regular.ttf}{\large}
+\end{document}
+
+
+
