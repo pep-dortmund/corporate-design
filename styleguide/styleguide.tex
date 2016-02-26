@@ -51,13 +51,13 @@
   \par\vspace{\parskip}
 }
 
-\newcommand{\textpreview}[3]{
+\newcommand{\textpreview}[2]{
 		\begin{raggedright}
-		{\setmainfont[#1]{#2}#3
+		    #1#2
 			\hspace{1cm}abcdefghijklmnopqrstuvwxyz\\%
 			\hspace{1cm}ABCDEFGHIJKLMNOPQRSTUVWXYZ\\%
-			\hspace{1cm}{2pt}0123456789(!\@\#\$\%\&.,?:;)
-			}
+			\hspace{1cm}0123456789(!\@\#\$\%\&.,?:;@)\\
+            \hspace{1cm}Schiffahrt Finale finales
 		\end{raggedright}
 }
 
@@ -83,15 +83,22 @@
 		\colorfield{HTML}{397CCC}\hfill
 		\colorfield{HTML}{2CCCA0}\hfill
 		\colorfield{HTML}{FFB137}\hfill
-		\colorfield{HTML}{FFB137}
 		
 	\vspace{\parskip}
 	\end{raggedright}
 
 	\section{Typographie}
-	Hier wird die verwendete Schrift beschrieben und Beispiele präsentiert.
-	
-	\textpreview{Mapping=tex-text, Color=textcolor}{Merriweather-Regular.ttf}{\large}
+    \subsection*{Schrift für Text-Dokumente aka \texttt{\textbackslash bodyfont}}
+	\textpreview{\bodyfont}{\large}
+
+    \subsection*{Schrift für Websites aka \texttt{\textbackslash thinfont}}
+	\textpreview{\thinfont}{\large}
+
+    \subsection*{Schrift für Aufmacher aka \texttt{\textbackslash headingfont}}
+	\textpreview{\headingfont}{\large}
+
+    \subsection*{Schrift für Hervorhebung aka \texttt{\textbackslash emphfont}}
+	\textpreview{\emphfont}{\large}
 \end{document}
 
 
