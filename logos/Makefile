@@ -1,6 +1,11 @@
-files := schwingung_positiv schwingung_negativ logo_positiv logo_negativ t-shirt
+files := schwingung_positiv \
+	schwingung_negativ \
+	logo_positiv \
+	logo_positiv_white \
+	logo_negativ \
+	t-shirt
 
-all: png svg pdf
+all: build/pep-logos.zip
 
 
 pdf: $(addprefix build/, $(addsuffix .pdf, $(files)))
@@ -22,7 +27,16 @@ publish: all
 	cp build/*.{svg,pdf,png} ..
 
 %.png: %.pdf | build
-	pdftoppm -png -r 600 $^ > $@
+	inkscape $^ \
+		--without-gui \
+		--export-dpi=600 \
+		--export-area-drawing \
+		--export-png=$@
+
+build/pep-logos.zip: png svg pdf
+	mkdir -p build/pep-logos
+	cp build/*.svg build/*.png build/*.pdf build/pep-logos/
+	cd build && zip -r pep-logos.zip pep-logos
 
 %.svg: %.pdf | build
 	inkscape --without-gui --export-plain-svg $@ $^

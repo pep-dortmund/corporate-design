@@ -1,11 +1,14 @@
 \input{header.tex}
 
-\drawfalse
+\drawtrue
 \filltrue
+\colorlet{strokeColor}{black}
+\colorlet{fillColor}{white}
 
 \begin{document}
+  \raggedright%
   \begin{tikzpicture}
-    \input{schwingung_negativ_code.tex}
+    \input{schwingung.tex}
     \input{schriftzug.tex}
   \end{tikzpicture}  
 \end{document}
