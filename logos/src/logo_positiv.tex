@@ -1,12 +1,13 @@
-\RequirePackage{luatex85} % Fix for standalone using lualatex
-\documentclass{standalone}
-
 \input{header.tex}
+
+\drawtrue
+\fillfalse
+\colorlet{strokeColor}{black}
 
 \begin{document}
   \raggedright%
   \begin{tikzpicture}
-    \input{schwingung_positiv_code.tex}
+    \input{schwingung.tex}
     \input{schriftzug.tex}
   \end{tikzpicture}  
 \end{document}

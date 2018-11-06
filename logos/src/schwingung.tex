@@ -1,8 +1,13 @@
 \begin{scope}
   \clip (0, 0) circle[radius=1cm];
-  \fill[color=pepgray] (0, 0) circle[radius=1cm];
+  \iffill
+    \fill[color=fillColor] (0, 0) circle[radius=1cm];
+  \fi
+  \ifdraw
+    \draw[color=strokeColor, line width=1pt] (0, 0) circle[radius=1cm - 0.5pt];
+  \fi
   \draw[
-    color=white,
+    color=strokeColor,
     line width=1pt,
     smooth,
     yscale=0.9,

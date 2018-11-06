@@ -1,10 +1,9 @@
-\RequirePackage{luatex85} % Fix for standalone using lualatex
-\documentclass{standalone}
-
 \input{header.tex}
 
+\drawfalse
+\filltrue
+
 \begin{document}
-  \raggedright%
   \begin{tikzpicture}
     \input{schwingung_negativ_code.tex}
     \input{schriftzug.tex}

@@ -1,12 +1,23 @@
-\usepackage{fontspec}
+\RequirePackage{luatex85}
+\documentclass{standalone}
 
-% \setromanfont{Merriweather Regular}
-% \setsansfont{MerriweatherSans Regular}
+\usepackage{fontspec}
 
 \setsansfont{Roboto}
 \let\familydefault\sfdefault
 \usepackage{setspace}
 
 \usepackage{xcolor}
-\definecolor{pepgray}{HTML}{565656}
 \usepackage{tikz}
+
+\raggedright
+
+\definecolor{pepgray}{HTML}{565656}
+
+\newif\ifdraw\drawfalse
+\newif\iffill\filltrue
+
+% defaults (match logo negative)
+\colorlet{strokeColor}{white}
+\colorlet{fillColor}{pepgray}
+\colorlet{textColor}{black}

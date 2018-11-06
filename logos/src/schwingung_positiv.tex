@@ -1,17 +1,11 @@
-\RequirePackage{luatex85} % Fix for standalone using lualatex
-\documentclass{standalone}
+\input{header.tex}
 
-\usepackage{fontspec}
-\setromanfont{Merriweather Regular}
-\setsansfont{MerriweatherSans Regular}
-\let\familydefault\sfdefault
-
-\usepackage{xcolor}
-\definecolor{pepgray}{HTML}{565656}
-\usepackage{tikz}
+\drawtrue
+\fillfalse
+\colorlet{strokeColor}{black}
 
 \begin{document}
 \begin{tikzpicture}
-  \input{./schwingung_positiv_code.tex}
+  \input{./schwingung.tex}
 \end{tikzpicture}  
 \end{document}
