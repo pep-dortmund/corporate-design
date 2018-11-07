@@ -27,7 +27,12 @@ script:
 deploy:
   provider: releases
   skip_cleanup: true
-  file: build/pep-logos.zip
+  file_glob: true
+  file:
+    - build/*.png
+    - build/*.svg
+    - build/*.pdf
+    - build/pep-logos.zip
   on:
     repo: pep-dortmund/corporate-design
     tags: true
