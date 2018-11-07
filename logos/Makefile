@@ -39,7 +39,7 @@ build/pep-logos.zip: png svg pdf
 	cd build && zip -r pep-logos.zip pep-logos
 
 %.svg: %.pdf | build
-	inkscape --without-gui --export-plain-svg $@ $^
+	inkscape --without-gui --export-text-to-path --export-plain-svg $@ $^
 
 FORCE:
 
