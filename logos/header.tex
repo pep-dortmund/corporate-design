@@ -1,0 +1,25 @@
+\RequirePackage{luatex85}
+\documentclass{standalone}
+
+\usepackage{fontspec}
+
+\setsansfont{Roboto}
+\let\familydefault\sfdefault
+\usepackage{setspace}
+
+\usepackage[dvips]{xcolor}
+\usepackage{tikz}
+
+\raggedright
+
+\definecolor{pepgray}{HTML}{565656}
+
+\newif\ifdraw\drawfalse
+\newif\iffill\filltrue
+
+% defaults (match logo negative)
+\colorlet{strokeColor}{white}
+\colorlet{fillColor}{pepgray}
+\colorlet{textColor}{black}
+
+\nopagecolor

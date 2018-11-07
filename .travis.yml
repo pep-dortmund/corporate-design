@@ -1,0 +1,40 @@
+sudo: required
+dist: trusty
+language: python
+
+python: 3.6
+
+install:
+    - sudo add-apt-repository ppa:inkscape.dev/stable -y
+    - sudo apt-get update -q
+    - sudo apt-get install inkscape -y
+    - inkscape --version
+    - pip install https://github.com/MaxNoe/texlive-batch-installation/archive/master.tar.gz
+    - > 
+        install_texlive -t 2018 -p $HOME/.local/texlive --collections='-a'
+        --install="latex,latex-bin,luatex,luatex85,standalone,pgf,xkeyval,oberdiek,fontspec,lm,luaotfload,setspace,graphics,latexmk,xcolor,roboto"
+    - export PATH="$HOME/.local/texlive/2018/bin/x86_64-linux:$PATH"
+    - mkdir -p $HOME/.local/share/fonts
+    - ln -s $HOME/.local/texlive/2018/texmf-dist/fonts/opentype $HOME/.local/share/fonts
+    - ln -s $HOME/.local/texlive/2018/texmf-dist/fonts/truetype $HOME/.local/share/fonts
+    - fc-cache
+    - fc-list 'Roboto'
+
+script:
+  - cd logos
+  - make
+
+deploy:
+  provider: releases
+  skip_cleanup: true
+  file_glob: true
+  file:
+    - build/*.png
+    - build/*.svg
+    - build/*.pdf
+    - build/pep-logos.zip
+  on:
+    repo: pep-dortmund/corporate-design
+    tags: true
+  api_key:
+    secure: BfYJhe+L5iBVMW0NH3dS5sUQNBMlfgZuNojDFM6ZvvSc/N1UcdI0pZ0SfyukFpmgslUttQOTqE0dWMpeF2xlow4Ds4Z5MzRRg/GQk/JUmPtE6VcmYTsDcvY4CqeE+TBxX+BETX/JZCNosjC44akyxXkD/mH5+OvPH3nW25KgfQSS7Sm5JxiyGjvw80aGr/lZnV3LWirs7MMOFd7p3dbEQhHqc7zDXqLsWSqEHVczXWhVyeFLqZ2SDsV4Y2VB9oL+4OIIWuCQBAlnwU3iYM2V4Hn4Cl+oMy1JFRfR/FU9oMQ6PLzWnIIbLqS8hRQn5aa1VSnA03qOJ/OQNz2oa4/reibDdWMEtF0zi8oQFf2PKTin7pakadLgH9PZ7Lok+g9JFQJ8OLvPvmVb1zw/j4iU/osKqspVxbA3IYyV8ShoEyZcQDXGj0lzGUHOlCZgs3gjsBvd6CyV4+G6OTLokCyRGmyyuedYSZ3lRVnNKKd0QWUximqCAf90OFX/xzTbenKd8ZU4mn2nvyZw3kf4ni5s0VbyszoLd+xdl5pUnelgoP0qUsKBgn1vfkjPioQRu+tuC1XA3ZBPkwx2uKn5WdNy5jDIf6VNYd2eyO8N4LWSertFqomO4BAcFBZELpcQ8u1QDbsN5EnBMIp9YxaBAtd9sXeMh5WvRPkTAaU3bf4QaCc=
