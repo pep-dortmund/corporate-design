@@ -9,6 +9,8 @@ from collections import Counter
 WIDTH = 4000
 HEIGHT = 4000
 
+np.random.seed(42)
+
 
 def read_img_resize(img_path, width, height, invert=False):
     '''
@@ -74,15 +76,17 @@ path_to_specific_pep_words = os.path.join(path_to_dict, 'specific_pep_words.txt'
 with open(path_to_specific_pep_words) as f:
     pepwords = [line.strip() for line in f if not line.startswith('#')]
 
-max_multi = 10
-min_multi = 1
-pwords = extend_list(pwords, min_multi, max_multi)
-pepwords = extend_list(pepwords, min_multi, max_multi)
+pwords = extend_list(pwords, 1, 5)
+pepwords = extend_list(pepwords, 5, 15)
 
-words = pwords + pepwords + ['PeP'] * 3 * max_multi
+words = pwords + pepwords + ['PeP'] * 50
 number_of_words = int(len(words))
 # wordcloud requires a dict that contains the word with his frequency
 words = dict(Counter(words))
+words['PhysiKon'] = 16
+words['Sommerakadmie'] = 16
+words['Toolbox'] = 16
+words['Alumni'] = 16
 
 
 path_to_logo = os.path.join(
