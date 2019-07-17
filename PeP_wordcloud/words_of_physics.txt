@@ -460,8 +460,6 @@ Rastertunnelspektroskopie
 Röntgenstreuung
 Leistungsdichte
 Protein
-UPS
-HOPG
 Absoluter Nullpunkt
 Tripelpunkt
 Phasenübergang

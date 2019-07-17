@@ -3,14 +3,14 @@ Messen
 Physikstudierende
 PhysiKon
 Hackathon
-Girs'Day
+Girl's Day
 Sommerakademie
 Absolventenfeier
-Mindstorm
+Mindstorms
 Kolloquium
-PeP Klassenzimmer
+Klassenzimmer
 Bachelor-Kolloquium
-Purdue University
+Purdue-University
 Deutschlandstipendium
 PhysiChor
 Toolbox
@@ -18,7 +18,7 @@ Github
 Berufsfelderseminar
 PeP im Park
 Stammtisch
-Workshop
+Workshops
 TU Dortmund
 Fachschaft
 Übungsgruppe
