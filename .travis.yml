@@ -13,6 +13,7 @@ install:
     - > 
         install_texlive -t 2018 -p $HOME/.local/texlive --collections='-a'
         --install="latex,latex-bin,luatex,luatex85,standalone,pgf,xkeyval,oberdiek,fontspec,lm,luaotfload,setspace,graphics,latexmk,xcolor,roboto"
+        -v
     - export PATH="$HOME/.local/texlive/2018/bin/x86_64-linux:$PATH"
     - mkdir -p $HOME/.local/share/fonts
     - ln -s $HOME/.local/texlive/2018/texmf-dist/fonts/opentype $HOME/.local/share/fonts
