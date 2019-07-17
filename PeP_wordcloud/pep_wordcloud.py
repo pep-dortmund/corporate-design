@@ -110,12 +110,10 @@ wc = WordCloud(
     max_words=number_of_words,
     color_func=higlight_pep,
     contour_color='firebrick',
-    background_color="rgba(255, 255, 255, 0)"
+    background_color="rgba(255, 255, 255, 0)",
+    random_state=1,
 )
-print(wc.width, wc.height, wc.scale)
 
 save_path = os.path.join(path_to_dict, 'pep_wordcloud.png')
 word_cloud = wc.generate_from_frequencies(words)
-print(word_cloud.width, word_cloud.height)
-print(word_cloud.to_array().shape)
 word_cloud.to_file(save_path)
