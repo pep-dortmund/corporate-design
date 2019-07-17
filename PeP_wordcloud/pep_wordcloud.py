@@ -19,21 +19,20 @@ def read_img_resize(img_path, width, height, invert=False):
     :return img_jpg: Return the converted image as numpy array
     '''
     img = Image.open(img_path)
-    # if image is already rgb, just return it
-    if img.mode == 'RGB':
-        return img
+    if img.mode != 'RGB':
+        # convert to RGB if not.
+        # https://stackoverflow.com/questions/9166400/convert-rgba-png-to-rgb-with-pil
+        img_rgb = Image.new("RGB", img.size, (255, 255, 255))
+        img_rgb.paste(img, mask=img.split()[3])
+        img = img_rgb
 
-    # convert to RGB if not.
-    # https://stackoverflow.com/questions/9166400/convert-rgba-png-to-rgb-with-pil
-    img_rgb = Image.new("RGB", img.size, (255, 255, 255))
-    img_rgb.paste(img, mask=img.split()[3])
-    img_rgb = img_rgb.resize((WIDTH, HEIGHT), resample=Image.BICUBIC)
-    img_rgb = np.array(img_rgb)
+    img = img.resize((WIDTH, HEIGHT), resample=Image.BICUBIC)
+    img = np.array(img)
 
     if invert:
-        img_rgb = np.invert(img_rgb)
+        img = np.invert(img)
 
-    return img_rgb
+    return img
 
 
 def extend_list(list, min_multi, max_multi):
