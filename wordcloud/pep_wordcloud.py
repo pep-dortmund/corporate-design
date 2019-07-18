@@ -36,21 +36,20 @@ def read_img_resize(img_path, width, height, invert=False):
     return img
 
 
-def extend_list(list, min_multi, max_multi):
+def repeat_words(words, min_repeat, max_repeat):
     '''
     Function add multiples of a list element. The number of elements added
     is determinded by a random number in the range of [min_multi, max_multi]
 
-    :param list: List to be extended.
-    :param min_multi: Lower limit for an extentions factor of a list element
-    :param max_multi: Upper limit for an extentions factor of a list element
-    :return extended_list: Return extended input list
+    :param words: words to be repeated.
+    :param min_repeat: minimum number of repitions
+    :param max_repeat: maximum number of repitions
+    :return: list with repeated words
     '''
-    extended_list = []
-    for element in list:
-        multiplier = int(np.random.uniform(min_multi, max_multi))
-        extended_list += [element] * multiplier
-    return extended_list
+    return np.repeat(
+        words,
+        np.random.randint(min_repeat, max_repeat + 1, len(words))
+    ).tolist()
 
 
 def higlight_pep(word, **kwargs):
@@ -71,8 +70,8 @@ with open('words_of_physics.txt') as f:
 with open('specific_pep_words.txt') as f:
     pepwords = [line.strip() for line in f if not line.startswith('#')]
 
-pwords = extend_list(pwords, 1, 5)
-pepwords = extend_list(pepwords, 5, 15)
+pwords = repeat_words(pwords, 1, 5)
+pepwords = repeat_words(pepwords, 5, 15)
 
 words = pwords + pepwords + ['PeP'] * 50
 number_of_words = int(len(words))
