@@ -1,7 +1,6 @@
 import os
 import numpy as np
 from PIL import Image
-from pathlib import Path
 from wordcloud import WordCloud
 from collections import Counter
 
@@ -66,14 +65,10 @@ def higlight_pep(word, **kwargs):
         return "hsl(209, 100%, 62%)"
 
 
-path_to_dict = Path(os.path.abspath(__file__)).parents[0]
-
-path_to_physics_words = os.path.join(path_to_dict, 'words_of_physics.txt')
-with open(path_to_physics_words) as f:
+with open('words_of_physics.txt') as f:
     pwords = [line.strip() for line in f if not line.startswith('#')]
 
-path_to_specific_pep_words = os.path.join(path_to_dict, 'specific_pep_words.txt')
-with open(path_to_specific_pep_words) as f:
+with open('specific_pep_words.txt') as f:
     pepwords = [line.strip() for line in f if not line.startswith('#')]
 
 pwords = extend_list(pwords, 1, 5)
@@ -89,13 +84,7 @@ words['Toolbox'] = 16
 words['Alumni'] = 16
 
 
-path_to_logo = os.path.join(
-    Path(os.path.abspath(__file__)).parents[2],
-    'corporate-design',
-    'logos',
-    'build',
-    'schwingung_positiv.png'
-)
+path_to_logo = os.path.join('..', 'logos', 'build', 'schwingung_positiv.png')
 mask = read_img_resize(path_to_logo, width=WIDTH, height=HEIGHT, invert=True)
 
 
@@ -118,6 +107,6 @@ wc = WordCloud(
     random_state=1,
 )
 
-save_path = os.path.join(path_to_dict, 'pep_wordcloud.png')
+save_path = os.path.join('build/pep_wordcloud.png')
 word_cloud = wc.generate_from_frequencies(words)
 word_cloud.to_file(save_path)
