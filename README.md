@@ -1,4 +1,4 @@
-# PeP et al. e.V. Corporate Design
+# PeP et al. e.V. Corporate Design [![Build Status](https://travis-ci.com/pep-dortmund/corporate-design.svg?branch=master)](https://travis-ci.com/pep-dortmund/corporate-design)
 
 
 This is our corporate design repository.
