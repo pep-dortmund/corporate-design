@@ -5,7 +5,6 @@ language: python
 python: 3.7
 
 install:
-    - sudo add-apt-repository ppa:inkscape.dev/stable -y
     - sudo apt-get update -q
     # install dbus to silence warnings from inkscape
     - sudo apt-get install inkscape dbus-x11 -y
