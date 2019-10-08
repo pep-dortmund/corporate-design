@@ -1,13 +1,14 @@
 sudo: required
-dist: trusty
+dist: bionic
 language: python
 
-python: 3.6
+python: 3.7
 
 install:
     - sudo add-apt-repository ppa:inkscape.dev/stable -y
     - sudo apt-get update -q
-    - sudo apt-get install inkscape -y
+    # install dbus to silence warnings from inkscape
+    - sudo apt-get install inkscape dbus-x11 -y
     - inkscape --version
     - pip install https://github.com/MaxNoe/texlive-batch-installation/archive/master.tar.gz
     - > 
@@ -15,6 +16,8 @@ install:
         --install="latex,latex-bin,luatex,luatex85,standalone,pgf,xkeyval,oberdiek,fontspec,lm,luaotfload,setspace,graphics,latexmk,xcolor,roboto"
         -v
     - export PATH="$HOME/.local/texlive/2019/bin/x86_64-linux:$PATH"
+
+    # link latex font dirs to a location where it can be found by inkscape
     - mkdir -p $HOME/.local/share/fonts
     - ln -s $HOME/.local/texlive/2019/texmf-dist/fonts/opentype $HOME/.local/share/fonts
     - ln -s $HOME/.local/texlive/2019/texmf-dist/fonts/truetype $HOME/.local/share/fonts
@@ -23,7 +26,7 @@ install:
 
 script:
   - cd logos
-  - make
+  - dbus-run-session make
 
 deploy:
   provider: releases
