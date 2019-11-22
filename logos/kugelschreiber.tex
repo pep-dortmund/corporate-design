@@ -1,0 +1,52 @@
+\documentclass{minimal}
+\usepackage[paperwidth=55mm, paperheight=31mm, margin=0.1mm]{geometry}
+
+
+\usepackage{fontspec}
+
+\setsansfont{Roboto}
+\setmonofont{Roboto Mono}
+\let\familydefault\sfdefault
+\usepackage{setspace}
+
+\usepackage{xcolor}
+\usepackage{tikz}
+
+\raggedright
+
+\definecolor{pepgray}{HTML}{565656}
+
+
+% defaults (match logo negative)
+\colorlet{strokeColor}{black}
+\colorlet{textColor}{black}
+
+\nopagecolor
+\pagestyle{empty}
+
+
+\begin{document}%
+  \raggedright%
+  \vspace*{\fill}%
+  \begin{tikzpicture}%
+    \begin{scope}[scale=0.66]
+      \clip (0, 0) circle[radius=1cm];
+      \draw[color=strokeColor, line width=1pt] (0, 0) circle[radius=1cm - 0.5pt];
+      \draw[
+        color=strokeColor,
+        line width=1pt,
+        smooth,
+        yscale=0.9,
+        xscale=0.57,
+        xshift=-0.5cm,
+        domain=-1.5:3,
+        samples=200,
+      ] plot (\x, {exp(-\x * \x) * cos(10 * deg(\x))}); 
+    \end{scope}
+    \node[anchor=west, text width=5cm, color=textColor] at (0.66, 0) {%
+      {\fontsize{20}{24}\selectfont\bfseries PeP et al.~e.\kern-0.1333em V\kern-0.1333em.}\\
+      {\ttfamily\fontsize{12}{12}\selectfont pep-dortmund.org}
+    };
+  \end{tikzpicture}
+  \vspace{\fill}%
+\end{document}
