@@ -5,7 +5,8 @@ files := schwingung_positiv \
 	logo_positiv_white \
 	logo_negativ \
 	logo_negativ_link \
-	t-shirt
+	t-shirt \
+	tshirt_positiv
 
 all: build/pep-logos.zip
 
