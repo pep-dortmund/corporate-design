@@ -1,0 +1,26 @@
+\input{header.tex}
+
+\colorlet{strokeColor}{black}
+
+\begin{document}
+  \raggedright%
+  \begin{tikzpicture}
+    \begin{scope}
+      \clip (0, 0) circle[radius=10cm];
+      \draw[color=strokeColor, line width=10pt] (0, 0) circle[radius=10cm - 5pt];
+      \draw[
+        color=strokeColor,
+        line width=10pt,
+        smooth,
+        yscale=9,
+        xscale=5.7,
+        xshift=-0.5cm,
+        domain=-1.5:3,
+        samples=1000,
+      ] plot (\x, {exp(-\x * \x) * cos(10 * deg(\x))}); 
+    \end{scope}
+    \node[anchor=north, align=center, color=textColor] at (0, -10cm) {%
+      {\fontsize{80}{120}\selectfont\bfseries PeP et al.~e.\kern-0.1333em V\kern-0.1333em.}
+    };
+  \end{tikzpicture}
+\end{document}
