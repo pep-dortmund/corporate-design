@@ -30,7 +30,7 @@ jobs:
     - name: Install TeXLive
       run: |
         pip install 'pygments>=2.4' https://github.com/maxnoe/texlive-batch-installation/archive/refs/tags/v0.3.0.tar.gz
-        install_texlive -p $HOME/texlive -t 2021 --collections="-a" --package-file /tex-packages.txt --update
+        install_texlive -p $HOME/texlive -t 2021 --collections="-a" --package-file tex-packages.txt --update
         echo "$HOME/texlive/2021/bin/x86_64-linux" >> $GITHUB_PATH
 
         # make sure we can use the fonts we installed with latex also with inkscape
