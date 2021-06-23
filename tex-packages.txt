@@ -1,0 +1,16 @@
+latex
+latex-bin
+luatex
+luatex85
+standalone
+pgf
+xkeyval
+oberdiek
+fontspec
+lm
+luaotfload
+setspace
+graphics
+latexmk
+xcolor
+roboto
