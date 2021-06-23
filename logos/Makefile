@@ -30,15 +30,16 @@ publish: all
 	cp build/*.{svg,pdf,png} ..
 
 %.png: %.pdf | build
-	inkscape --export-dpi=600 --export-area-drawing $< -o $@
+	inkscape --pdf-poppler --export-dpi=600 --export-area-drawing $< -o $@
+
+%.svg: %.pdf | build
+	inkscape --pdf-poppler --export-text-to-path --export-plain-svg $< -o $@
+
 
 build/pep-logos.zip: png svg pdf
 	mkdir -p build/pep-logos
 	cp build/*.svg build/*.png build/*.pdf build/pep-logos/
 	cd build && zip -r pep-logos.zip pep-logos
-
-%.svg: %.pdf | build
-	inkscape --export-text-to-path --export-plain-svg $< -o $@
 
 FORCE:
 
