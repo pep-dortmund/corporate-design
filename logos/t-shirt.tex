@@ -4,7 +4,6 @@
   \raggedright%
   \begin{tikzpicture}
     \begin{scope}
-      \clip (0, 0) circle[radius=10cm];
       \fill[color=fillColor] (0, 0) circle[radius=10cm];
       \draw[
         color=strokeColor,
@@ -13,7 +12,7 @@
         yscale=9,
         xscale=5.7,
         xshift=-0.5cm,
-        domain=-1.5:3,
+        domain=-1.2:2.25,
         samples=1000,
       ] plot (\x, {exp(-\x * \x) * cos(10 * deg(\x))}); 
     \end{scope}
