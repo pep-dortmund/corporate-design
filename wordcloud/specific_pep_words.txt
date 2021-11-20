@@ -1,34 +1,27 @@
-Kaiserschmarn
-Messen
-Physikstudierende
+PeP
+PeP
+Physik
+Physik
+Dortmund
+Dortmund
+Alumniverein
+Alumniverein
+Toolbox
+Stammtisch
+Workshops
+Klassenzimmer
+tu
+Kaiserschmarrn
+NassesHolz
 PhysiKon
 Hackathon
-Girl's Day
+GirlsDay
 Sommerakademie
 Absolventenfeier
 Mindstorms
-Kolloquium
-Klassenzimmer
-Bachelor-Kolloquium
-Purdue-University
+BachelorKolloquium
+GoingAbroad
 Deutschlandstipendium
 PhysiChor
-Toolbox
-Github
 Berufsfelderseminar
-PeP im Park
-Stammtisch
-Workshops
-TU Dortmund
-Fachschaft
-Übungsgruppe
-Tutorium
-Klausur
-Stipendium
-Big Bang
-Grillen
-Bier
-Casinoabend
-Weihnachtsfeier
-Meet your Prof
-Beat your Prof
+

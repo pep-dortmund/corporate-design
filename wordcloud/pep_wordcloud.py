@@ -1,8 +1,9 @@
 import os
 import numpy as np
-from PIL import Image
+#  from PIL import Image
+from matplotlib import image
 from wordcloud import WordCloud
-from collections import Counter
+#  from collections import Counter
 
 
 WIDTH = 4000
@@ -10,7 +11,7 @@ HEIGHT = 4000
 
 np.random.seed(42)
 
-
+# Not in use
 def read_img_resize(img_path, width, height, invert=False):
     '''
     Function to read in an image and convert it into the RGB space.
@@ -36,6 +37,7 @@ def read_img_resize(img_path, width, height, invert=False):
     return img
 
 
+# Not in use
 def repeat_words(words, min_repeat, max_repeat):
     '''
     Function add multiples of a list element. The number of elements added
@@ -52,6 +54,7 @@ def repeat_words(words, min_repeat, max_repeat):
     ).tolist()
 
 
+# Not in use
 def higlight_pep(word, **kwargs):
     '''
     Function to highlight the word "PeP" by changing the color
@@ -65,47 +68,43 @@ def higlight_pep(word, **kwargs):
 
 
 with open('words_of_physics.txt') as f:
-    pwords = [line.strip() for line in f if not line.startswith('#')]
+    pwords = f.read()
 
 with open('specific_pep_words.txt') as f:
-    pepwords = [line.strip() for line in f if not line.startswith('#')]
+    pepwords = f.read()
 
-pwords = repeat_words(pwords, 1, 5)
-pepwords = repeat_words(pepwords, 5, 15)
+words = pepwords + pepwords + pwords
 
-words = pwords + pepwords + ['PeP'] * 50
-number_of_words = int(len(words))
-# wordcloud requires a dict that contains the word with his frequency
-words = dict(Counter(words))
-words['PhysiKon'] = 16
-words['Sommerakadmie'] = 16
-words['Toolbox'] = 16
-words['Alumni'] = 16
+#  path_to_logo = os.path.join('..', 'logos', 'build', 'schwingung_positiv.png')
+#  mask = read_img_resize(path_to_logo, width=WIDTH, height=HEIGHT, invert=True)
 
-
-path_to_logo = os.path.join('..', 'logos', 'build', 'schwingung_positiv.png')
-mask = read_img_resize(path_to_logo, width=WIDTH, height=HEIGHT, invert=True)
-
+# mask the wordcloud with the pep logo
+alphaimg = image.imread('schwingung_negativ_high_res.png')[:, :, -1]
+rimg = image.imread('schwingung_negativ_high_res.png')[:, :, 0]
+mask = (alphaimg == 0.0) | (rimg == 1)
+mask = 255 * mask.astype(int)
 
 # Link to documentation
 # https://amueller.github.io/word_cloud/generated/wordcloud.WordCloud.html
 wc = WordCloud(
-    font_path='/home/maxnoe/.local/share/fonts/AkkBd_Office.otf',
-    mask=mask,
-    mode="RGBA",
-    width=WIDTH,
-    height=HEIGHT,
-    repeat=False,
-    min_font_size=4,
-    max_font_size=None,
-    contour_width=0,
-    max_words=number_of_words,
-    color_func=higlight_pep,
-    contour_color='firebrick',
-    background_color="rgba(255, 255, 255, 0)",
-    random_state=1,
+    font_path = 'AkkBd_Office.otf',
+    background_color = "rgba(255, 255, 255, 0)",
+    mode = "RGBA",
+    random_state = 42,
+    mask = mask,
+    width = WIDTH,
+    height = HEIGHT,
+    max_words = 250,
+    color_func = lambda *args,
+    **kwargs: 'rgb(255, 255, 255)'
 )
 
+word_cloud = wc.generate(words)
+# Invert wordcloud for black text
+word_cloud.recolor(
+        random_state=42,
+        color_func=lambda *args,
+        **kwargs : 'rgb(0, 0, 0)')
+
 save_path = os.path.join('build/pep_wordcloud.png')
-word_cloud = wc.generate_from_frequencies(words)
 word_cloud.to_file(save_path)
