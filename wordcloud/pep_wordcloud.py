@@ -84,10 +84,12 @@ rimg = image.imread('schwingung_negativ_high_res.png')[:, :, 0]
 mask = (alphaimg == 0.0) | (rimg == 1)
 mask = 255 * mask.astype(int)
 
+# WordCloud requires Akkurat Font - Check PeP Nextcloud
+
 # Link to documentation
 # https://amueller.github.io/word_cloud/generated/wordcloud.WordCloud.html
 wc = WordCloud(
-    font_path = 'AkkBd_Office.otf',
+    font_path = os.path.expanduser('~/.fonts/AkkBd_Office.otf'),
     background_color = "rgba(255, 255, 255, 0)",
     mode = "RGBA",
     random_state = 42,
@@ -98,13 +100,18 @@ wc = WordCloud(
     color_func = lambda *args,
     **kwargs: 'rgb(255, 255, 255)'
 )
-
 word_cloud = wc.generate(words)
+
+# Save positive wordcloud as png
+save_path = os.path.join('build/pep_wordcloud_positiv.png')
+word_cloud.to_file(save_path)
+
 # Invert wordcloud for black text
 word_cloud.recolor(
         random_state=42,
         color_func=lambda *args,
         **kwargs : 'rgb(0, 0, 0)')
 
-save_path = os.path.join('build/pep_wordcloud.png')
+# Save negative wordcloud as png
+save_path = os.path.join('build/pep_wordcloud_negativ.png')
 word_cloud.to_file(save_path)
