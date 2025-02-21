@@ -4,10 +4,10 @@ on: [push, pull_request]
 
 jobs:
   build-slides:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
 
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
 
     - name: install dependencies
       run: |
@@ -17,10 +17,10 @@ jobs:
         sudo apt-get install -y inkscape dbus-x11
         inkscape --version
 
-    - name: Set up Python 3.8
-      uses: actions/setup-python@v2
+    - name: Set up Python 3.12
+      uses: actions/setup-python@v5
       with:
-        python-version: 3.8
+        python-version: 3.12
 
     - name: Add conda to system path
       run: |
@@ -29,14 +29,14 @@ jobs:
 
     - name: Install TeXLive
       run: |
-        pip install 'pygments>=2.4' https://github.com/maxnoe/texlive-batch-installation/archive/refs/tags/v0.3.0.tar.gz
-        install_texlive -p $HOME/texlive -t 2021 --collections="-a" --package-file tex-packages.txt --update
-        echo "$HOME/texlive/2021/bin/x86_64-linux" >> $GITHUB_PATH
+        pip install 'pygments>=2.4' 'install_texlive>=3.7'
+        install_texlive -p $HOME/texlive -t 2024 --collections="-a" -f tex-packages.txt --update
+        echo "$HOME/texlive/2024/bin/x86_64-linux" >> $GITHUB_PATH
 
         # make sure we can use the fonts we installed with latex also with inkscape
         mkdir -p $HOME/.local/share/fonts
-        ln -s $HOME/.local/texlive/2019/texmf-dist/fonts/opentype $HOME/.local/share/fonts
-        ln -s $HOME/.local/texlive/2019/texmf-dist/fonts/truetype $HOME/.local/share/fonts
+        ln -s $HOME/texlive/2024/texmf-dist/fonts/opentype $HOME/.local/share/fonts
+        ln -s $HOME/texlive/2024/texmf-dist/fonts/truetype $HOME/.local/share/fonts
         fc-cache
         fc-list 'Roboto'
 
