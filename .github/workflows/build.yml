@@ -29,7 +29,7 @@ jobs:
 
     - name: Install TeXLive
       run: |
-        pip install 'pygments>=2.4' 'install_texlive>=3.7'
+        pip install 'pygments>=2.4' 'install_texlive>=0.3.7'
         install_texlive -p $HOME/texlive -t 2024 --collections="-a" -f tex-packages.txt --update
         echo "$HOME/texlive/2024/bin/x86_64-linux" >> $GITHUB_PATH
 
